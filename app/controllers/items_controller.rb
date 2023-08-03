@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-  end
+  
 
   def update
     if @items.update(item_params)
@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  end
+  
 
 
 
