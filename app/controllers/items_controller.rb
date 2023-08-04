@@ -7,11 +7,11 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @items = Item.new
+    @item = Item.new
   end
 
   def create
-    @items = Item.new(prototype_params)
+    @item = Item.new(item_params)
     if @items.save
       redirect_to root_path
     else
@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
   
 
   def update
-    if @items.update(item_params)
+    if @item.update(item_params)
       redirect_to item_path(@items)
     else
       render :edit
@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
   end
 
   def set_prototype
-    @items = Item.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
 
