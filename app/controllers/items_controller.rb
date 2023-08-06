@@ -21,14 +21,22 @@ class ItemsController < ApplicationController
   
 
   def update
-    if @item.update(item_params)
+    @item.update(item_params)
+    if @item.valid?
       redirect_to item_path(@items)
     else
       render :edit
     end
   end
 
-  
+  def destroy
+    if @item.user_id == current_user.id
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
 
 
 
