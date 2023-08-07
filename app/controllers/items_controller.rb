@@ -29,6 +29,9 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+  end
+  
   def destroy
     if @item.user_id == current_user.id
       @item.destroy
@@ -40,8 +43,7 @@ class ItemsController < ApplicationController
 
 
 
-  def show
-  end
+ 
 
   private
   def item_params
