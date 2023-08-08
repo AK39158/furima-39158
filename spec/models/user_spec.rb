@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
         expect(@user).to be_valid
       end
       it '名字が全角（漢字・ひらがな・カタカナ）であれば登録できる' do
-        @user.last_name = '山田'
+        @user.family_name = '山田'
         expect(@user).to be_valid
       end
       it '名前が全角（漢字・ひらがな・カタカナ）であれば登録できる' do
@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
         expect(@user).to be_valid
       end
       it '名字のフリガナが全角（カタカナ）であれば登録できる' do
-        @user.last_name_kana = 'ヤマダ'
+        @user.family_name_kana = 'ヤマダ'
         expect(@user).to be_valid
       end
       it '名前のフリガナが全角（カタカナ）であれば登録できる' do
@@ -77,9 +77,9 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it '名字が全角（漢字・ひらがな・カタカナ）でないと登録できない' do
-        @user.last_name = 'yamada'
+        @user.family_name = 'yamada'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last name is invalid')
+        expect(@user.errors.full_messages).to include('Family name is invalid')
       end
       it '名前が全角（漢字・ひらがな・カタカナ）でないと登録できない' do
         @user.first_name = 'rikutaro'
@@ -87,9 +87,9 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('First name is invalid')
       end
       it '名字のフリガナが全角（カタカナ）でないと登録できない' do
-        @user.last_name_kana = 'やまだ'
+        @user.family_name_kana = 'やまだ'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last name kana is invalid')
+        expect(@user.errors.full_messages).to include('Family name kana is invalid')
       end
       it '名前のフリガナが全角（カタカナ）でないと登録できない' do
         @user.first_name_kana = 'りくたろう'
@@ -97,9 +97,9 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('First name kana is invalid')
       end
       it '生年月日が空欄だと保存できない' do
-        @user.birthday = ''
+        @user.birth_date = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Birthday can't be blank")
+        expect(@user.errors.full_messages).to include("Birth date can't be blank")
       end
     end
   end
