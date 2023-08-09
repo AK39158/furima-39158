@@ -18,7 +18,6 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-  
 
   def update
     @item.update(item_params)
@@ -31,7 +30,7 @@ class ItemsController < ApplicationController
 
   def show
   end
-  
+
   def destroy
     if @item.user_id == current_user.id
       @item.destroy
@@ -41,18 +40,14 @@ class ItemsController < ApplicationController
     end
   end
 
-
-
- 
-
   private
+
   def item_params
-    params.require(:item).permit(:image, :name, :introduction, :price, :category_id, :item_condition_id, :shipping_cost_id, :prefecture_id, :shipping_date_id).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :name, :introduction, :price, :category_id, :item_condition_id, :shipping_cost_id,
+                                 :prefecture_id, :shipping_date_id).merge(user_id: current_user.id)
   end
 
   def set_prototype
     @item = Item.find(params[:id])
   end
-
-
 end
