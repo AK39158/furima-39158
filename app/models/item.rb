@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  
+
   belongs_to :user
    has_one    :order
 
@@ -16,4 +16,6 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :shipping_date_id
   end
+
+  has_one_attached :image
 end
