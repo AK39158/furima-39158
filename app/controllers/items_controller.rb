@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
-  before_action :set_prototype, except: [:index, :new, :create]
+  
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @items = Item.includes(:user)
+    @item = Item.includes(:user)
   end
 
   def new
@@ -12,17 +13,24 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @items.save
+    if @item.save
       redirect_to root_path
     else
       render :new
     end
   end
 
+  def edit
+    if @item.user_id == current_user.id 
+    else
+      redirect_to root_path
+    end
+  end
+
   def update
     @item.update(item_params)
     if @item.valid?
-      redirect_to item_path(@items)
+      redirect_to item_path(item_params)
     else
       render :edit
     end
@@ -47,7 +55,7 @@ class ItemsController < ApplicationController
                                  :prefecture_id, :shipping_date_id).merge(user_id: current_user.id)
   end
 
-  def set_prototype
+  def set_item
     @item = Item.find(params[:id])
   end
 end
