@@ -4,6 +4,12 @@ class Item < ApplicationRecord
   belongs_to :user
    has_one    :order
 
+   belongs_to :category
+  belongs_to :prefecture
+  belongs_to :item_condition
+  belongs_to :shipping_cost
+  belongs_to :shipping_date
+
   with_options presence: true do
     validates :user
     validates :image
