@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   belongs_to :user
-   has_one    :order
+  #  has_one    :order
 
    belongs_to :category
   belongs_to :prefecture
@@ -11,11 +11,10 @@ class Item < ApplicationRecord
   belongs_to :shipping_date
 
   with_options presence: true do
-    validates :user
     validates :image
     validates :name
     validates :introduction
-    validates :price, format: { with: /\A[0-9]+\z/ },numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    validates :price, only_integer: true, format: { with: /\A[0-9]+\z/ },numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
     validates :category_id
     validates :item_condition_id
     validates :shipping_cost_id
