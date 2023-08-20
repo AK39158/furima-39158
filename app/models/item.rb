@@ -2,9 +2,9 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   belongs_to :user
-   has_one    :order
+  has_one    :order
 
-   belongs_to :category
+  belongs_to :category
   belongs_to :prefecture
   belongs_to :item_condition
   belongs_to :shipping_cost
@@ -35,6 +35,6 @@ class Item < ApplicationRecord
   validates :content, presence: true, unless: :was_attached?
 
   def was_attached?
-    self.image.attached?
+    image.attached?
   end
 end
