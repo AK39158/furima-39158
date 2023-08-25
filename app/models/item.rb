@@ -10,6 +10,8 @@ class Item < ApplicationRecord
   belongs_to :shipping_cost
   belongs_to :shipping_date
 
+  has_one_attached :image
+
   with_options presence: true do
     validates :image
     validates :name
@@ -22,7 +24,7 @@ class Item < ApplicationRecord
     validates :shipping_date_id
   end
 
-  has_one_attached :image
+  
 
   with_options numericality: { other_than: 0 } do
     validates :category_id
@@ -32,9 +34,6 @@ class Item < ApplicationRecord
     validates :shipping_date_id
   end
 
-  validates :content, presence: true, unless: :was_attached?
-
-  def was_attached?
-    image.attached?
-  end
+  
+  
 end
